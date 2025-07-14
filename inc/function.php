@@ -20,5 +20,18 @@
 
         return $object;
     } 
+
+    function loggin($email, $mdp){
+        $requete="SELECT * FROM examen_membre as E WHERE E.email='%s' AND E.mdp='%s'";
+        $requete=sprintf($requete, $email, $mdp);
+        $table = mysqli_query(dbconnect(), $requete);
+        while($result=mysqli_fetch_assoc($table)){
+            if($result['email']==$email && $result['mdp']==$mdp){
+                return true;
+            }
+        }
+        return false;
+    }
+?>
     
     

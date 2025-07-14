@@ -6,9 +6,13 @@
         header('location:../acceuil.php');
     }
    
-
-
-
-
+    if(isset($_POST['loggin'])){
+        if(loggin($_POST['email'], $_POST['password'])){
+            header('Location:../acceuil.php');
+        }
+        else{
+            header('Location:../login.php?erreur');
+        }
+    }
 
 ?>
