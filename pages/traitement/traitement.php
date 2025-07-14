@@ -62,6 +62,11 @@
     if(isset($_POST['categorie'])){
         header('Location:../acceuil.php?cat='.$_POST['categorie']);
     }
+
+    if(isset($_get['valider']))
+    {
+        
+    }
     
 
 ?>

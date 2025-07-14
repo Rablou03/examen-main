@@ -150,6 +150,12 @@ form input[type="submit"]:hover {
                 <?php if($o['nom_image']==null ){ ?>
                     <img src="../assets/images/inconnu.jpg" alt="">
                 <?php } ?>
+                <?php if(emprunt_non($o['id_objet'])==false) {?>
+                <button> Impossible d'umprunter</button>
+                <?php }else{?>
+                    <button> <a href="date.php">je ve emprunter</a></button>
+                <?php } ?>
+
             </div>
         <?php } }?>
 

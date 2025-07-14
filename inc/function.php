@@ -91,6 +91,34 @@
         $nom=mysqli_fetch_assoc($table);
         return $nom['nom'];
     }
+
+    function emprunt_non($id_objet)
+{
+    $requete = 'SELECT * FROM v_empr_objet WHERE id_objet = "%s"';
+    $requete = sprintf($requete, $id_objet);
+    $inser = mysqli_query(dbconnect(), $requete);
+    $resultat = mysqli_fetch_assoc($inser);
+
+   
+    if ($resultat) {
+       
+        if ($resultat['date_retour'] === null) {
+            return false; 
+        } else {
+            return true; 
+        }
+    }
+
+    
+}
+
+    function emprunt_oui($id_objet,$id_membre,$id_retour,$id_emp)
+    {
+        $requete='INSERT INTO Examen_emprunt(id_objet,id_membre,date_emprunt,date_retour) 
+            values("%s";"%s","%s","%s")';
+        $requete=sprintf($requete);
+    }
+
 ?>
     
     
