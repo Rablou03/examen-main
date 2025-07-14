@@ -98,7 +98,6 @@
     $requete = sprintf($requete, $id_objet);
     $inser = mysqli_query(dbconnect(), $requete);
     $resultat = mysqli_fetch_assoc($inser);
-
    
     if ($resultat) {
        
