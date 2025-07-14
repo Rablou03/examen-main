@@ -103,4 +103,18 @@ INSERT INTO Examen_objet(nom_objet, id_categorie, id_membre) VALUES
 ('Couverts', 4, 4),
 ('Verres', 4, 4);
 
-create or replace 
+ INSERT INTO Examen_emprunt(id_objet, id_membre, date_emprunt, date_retour) VALUES
+(1, 2, '2025-07-01', '2025-07-10'),
+(2, 3, '2025-07-02', '2025-07-11'),
+(3, 4, '2025-07-03', '2025-07-12'),
+(4, 1, '2025-07-04', '2025-07-13'),
+(5, 2, '2025-07-05', '2025-07-14'),
+(6, 3, '2025-07-06', '2025-07-15'),
+(7, 4, '2025-07-07', '2025-07-16'),
+(8, 1, '2025-07-08', '2025-07-17'),
+(9, 2, '2025-07-09', '2025-07-18'),
+(10, 3, '2025-07-10', '2025-07-19');
+
+create view v_empr_objet as SELECT E.id_objet, E.date_emprunt , E.date_retour , O.nom_objet,
+    C.id_categorie from Examen_emprunt as E join Examen_objet as O on  O.id_objet=E.id_objet join Examen_categorie_objet as C 
+    on C.id_categorie=O.id_categorie;
