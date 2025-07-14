@@ -3,13 +3,13 @@
 
     if(isset($_GET['inscription'])){
         inscription($_GET['nom'],$GET['dtn'],$_GET['mail'],$_GET['mdp'],$_GET['ville'],null,$_GET['genre']);
-        $_SESSION['id_membre']=get_id($_GET['nom']);
+        
         header('location:../acceuil.php');
     }
    
     if(isset($_POST['loggin'])){
         if(loggin($_POST['email'], $_POST['password'])){
-            $_SESSION['id_membre']=get_id($_POST['email']);
+          
             header('Location:../acceuil.php');
         }
         else{
@@ -17,9 +17,9 @@
         }
     }
 
-    if(isset($_GET['Ajouter']))
+    if(isset($_POST['Uploader']))
     {
-        $uploadDir = __DIR__ . '/../assets/images/';
+        $uploadDir = __DIR__ . '/../../assets/images/';
         $maxSize = 40 * 1024 * 1024; // 2 Mo
         $allowedMimeTypes = ['image/jpeg', 'image/png','image/JPG','application/pdf'];
         // Vérifie si un fichier est soumis

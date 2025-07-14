@@ -120,7 +120,7 @@ form input[type="submit"]:hover {
         <label for="fichier">Choisir un fichier :</label>
         <input type="file" name="fichier" id="fichier" required>
         <br><br>
-        <input type="submit" value="Uploader">
+        <input type="submit" value="Uploader" name="Uploader">
     </form>
     <h1>Liste des objets disponibles</h1>
     <div class="container">
