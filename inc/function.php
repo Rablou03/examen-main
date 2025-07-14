@@ -34,9 +34,10 @@
         return false;
     }
 
-    function get_id($nom)
+    function get_id($mail)
     {
-        $requete="SELECT id_membre from examen_membre where nom=$nom or email=$nom";
+        $requete="SELECT id_membre from Examen_membre where  email='%s'";
+        $requete=sprintf($requete, $mail);
         $inser=mysqli_query(dbconnect(),$requete);
         $resultat=mysqli_fetch_assoc($inser);
         return $resultat['id_membre'];
@@ -107,7 +108,6 @@
             return true; 
         }
     }
-
     
 }
 
@@ -118,6 +118,36 @@
         $requete=sprintf($requete);
     }
 
+    function get_emprunt_de($id){
+        $requete="SELECT * FROM v_empr_objet WHERE id_membre='%s'";
+        $requete=sprintf($requete, $id);
+        $table=mysqli_query(dbconnect(), $requete);
+        $liste=[];
+        while($result=mysqli_fetch_assoc($table)){
+            $liste[]=$result;
+        }
+        return $liste;
+    }
+
+    function etat_des_objets_abime(){
+        $requete="SELECT COUNT(id_objet), nom_objet, etat FROM v_etat_objet WHERE etat='abimé'";
+        $table=mysqli_query(dbconnect(), $requete);
+        $liste=[];
+        while($result=mysqli_fetch_assoc($table)){
+            $liste[]=$result;
+        }
+        return $liste;
+    }
+
+     function etat_des_objets_okey(){
+        $requete="SELECT COUNT(id_objet), nom_objet, etat FROM v_etat_objet WHERE etat='okey'";
+        $table=mysqli_query(dbconnect(), $requete);
+        $liste=[];
+        while($result=mysqli_fetch_assoc($table)){
+            $liste[]=$result;
+        }
+        return $liste;
+    }
 ?>
     
     

@@ -193,3 +193,36 @@ FROM Examen_emprunt AS E
 JOIN Examen_objet AS O ON O.id_objet = E.id_objet
 JOIN Examen_categorie_objet AS C ON C.id_categorie = O.id_categorie
 JOIN Examen_membre as M ON M.id_membre=E.id_membre;
+
+
+CREATE TABLE Examen_etat_objet(
+    id_etat INT PRIMARY KEY AUTO_INCREMENT,
+    id_objet INT,
+    id_membre INT,
+    etat VARCHAR(100),
+    FOREIGN KEY (id_objet) REFERENCES Examen_objet(id_objet),
+    FOREIGN KEY (id_membre) REFERENCES Examen_membre(id_membre)
+);
+
+INSERT INTO Examen_etat_objet(id_objet, id_membre, etat) VALUES
+(2, 4, 'abimé'),
+(3, 4, 'abimé'),
+(5, 1, 'okey'),
+(7, 4, 'okey'),
+(11, 2, 'abimé'),
+(18, 5, 'okey'),
+(40, 2, 'okey');
+
+CREATE VIEW v_etat_objet as 
+SELECT    
+    E.id_objet, 
+    E.date_emprunt, 
+    E.date_retour, 
+    O.nom_objet,
+    C.id_categorie,
+    C.nom_categorie,
+    ET.etat
+FROM Examen_emprunt AS E
+JOIN Examen_objet AS O ON O.id_objet = E.id_objet
+JOIN Examen_categorie_objet AS C ON C.id_categorie = O.id_categorie
+JOIN Examen_etat_objet as ET ON ET.id_objet=O.id_objet;

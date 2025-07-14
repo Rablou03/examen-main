@@ -1,4 +1,5 @@
 <?php 
+session_start();
     include('../../inc/function.php');
 
     if(isset($_GET['inscription'])){
@@ -9,7 +10,7 @@
    
     if(isset($_POST['loggin'])){
         if(loggin($_POST['email'], $_POST['password'])){
-          
+          $_SESSION['id_membre']=get_id($_POST['email']);
             header('Location:../acceuil.php');
         }
         else{

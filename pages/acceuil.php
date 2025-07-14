@@ -2,6 +2,7 @@
     include('../inc/function.php');
     $objet = get_objet();
     $cat=get_categorie();
+    $emprunt=get_emprunt_de($_SESSION['id_membre']);
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +25,33 @@ h1 {
     color: #222;
     margin-bottom: 30px;
 }
+  table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+        background-color: #fff;
+    }
 
-/* Formulaire de filtre */
+    th, td {
+        padding: 12px 15px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+
+    .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #888;
+    }
 form {
     background-color: #fff;
     padding: 20px;
@@ -63,7 +89,6 @@ form input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Grille des objets */
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -72,7 +97,6 @@ form input[type="submit"]:hover {
     gap: 20px;
 }
 
-/* Carte d'un objet */
 .card {
     background-color: white;
     border-radius: 8px;
@@ -101,7 +125,6 @@ form input[type="submit"]:hover {
     border-radius: 6px;
 }
 
-/* Lien objet */
 .nom-objet a {
     text-decoration: none;
     color: #333;
@@ -115,6 +138,25 @@ form input[type="submit"]:hover {
     </style>
 </head>
 <body>
+    <h2>Liste de vos emprunts :</h2>
+    <table>
+            <tr>
+                <td>Objet</td>
+                <td>Emprunté le :</td>
+                <td>Par :</td>
+                <td>Rendu le :</td>
+            </tr>
+            <?php foreach($emprunt as $e){?>
+                <tr>
+                    <td><?php echo $e['nom_objet'] ;?></td>
+                    <td><?php echo $e['date_emprunt'];?></td>
+                    <td>Vous</td>
+                    <td><?php echo $e['date_retour'];?></td>
+                </tr>
+            <?php } ?>
+        </table>
+
+<button><a href="etat.php">Voir état des objets</a></button>
     <h2>Uploader un fichier</h2>
     <form action="traitement/traitement.php" method="post" enctype="multipart/form-data">
         <label for="fichier">Choisir un fichier :</label>
